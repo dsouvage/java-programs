@@ -1,4 +1,4 @@
-//6096101 Dylan Souvage Assignment 3
+//Dylan Souvage 
 
 import java.util.Scanner;
 import java.io.*;
