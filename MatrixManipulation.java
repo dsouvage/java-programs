@@ -1,4 +1,4 @@
-//6096101 Dylan Souvage Assignment 4 Question 2
+//Dylan Souvage
 
 import java.util.Scanner;
 
