@@ -1,4 +1,4 @@
-//6096101 Dylan Souvage Assignment 5
+//Dylan Souvage 
 import java.util.Scanner;
 
 public class Fraction {
