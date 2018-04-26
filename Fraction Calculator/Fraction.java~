@@ -1,0 +1,226 @@
+//6096101 Dylan Souvage Assignment 5
+import java.util.Scanner;
+
+public class Fraction {
+  //declares instance variables
+  private long num;
+  private long denom;
+  
+  //constructs fraction with 0 and 1
+  Fraction(){
+    num = 0;
+    denom = 1;
+  }
+  
+  //constructs fraction with numerator user value and 1 as denom
+  Fraction(long n){
+    num = n;
+    denom = 1;
+  }
+  
+  //constructs fractions with user inputted variables
+  Fraction(long n,long d){
+    num = n;
+    denom = d;
+  }
+  
+  //converts the fraction into double value
+  double toDouble(Fraction f1){
+    return (double) f1.num / (double) f1.denom;
+  }    
+  
+  
+  //method for converting to string
+  String toString(Fraction f1){
+    String fractionString = f1.num + "/" + f1.denom;
+    return (fractionString);
+  }
+  
+  //adds the sum of two fractions
+  Fraction sum(Fraction f1,Fraction f2){
+    Fraction f3;
+    
+    long d = f1.denom*f2.denom;
+    long n = f1.num*f2.denom+f1.denom*f2.num;
+    
+    f3 = new Fraction(n,d);
+    
+    f3 = f3.SetSign(f3);
+    
+    return (f3);
+  }
+  
+  //subtracts one fraction from another
+  Fraction minus(Fraction f1,Fraction f2){
+    Fraction f3;
+    
+    long d = f1.denom*f2.denom;
+    long n = f1.num*f2.denom-f1.denom*f2.num;
+    
+    f3 = new Fraction(n,d);
+    
+    f3 = f3.SetSign(f3);
+    
+    return (f3);
+  }
+  
+  //multiples two fractions
+  Fraction product(Fraction f1,Fraction f2){
+    Fraction f3;
+    f3 = new Fraction(f1.num*f2.num,f1.denom*f2.denom);
+    f3 = f3.SetSign(f3);
+    return (f3);
+  }
+  
+  //divides two fractions
+  Fraction divide(Fraction f1,Fraction f2) throws ArithmeticException{
+    //if the user has inputted any 0s for their denominator
+    //then the program will throw an arithmetic exception 
+    if (f2.denom == 0 || f1.denom == 0){
+      throw new ArithmeticException("illegal denominator value");
+    }
+    else  {
+      Fraction f3;
+      f3 = new Fraction(f1.num*f2.denom,f1.denom*f2.num);
+      f3 = f3.SetSign(f3);
+      return (f3);
+    }
+  } 
+  
+  //method for setting the correct sign of a fraction
+  private Fraction SetSign(Fraction fr){
+    Fraction fs;
+    
+    fs = new Fraction(num, denom);
+    //moves the negative sign to the numerator from the denominator
+    //if both are negative then it makes the fraction positive
+    //and if the numerator is 0, then it removes the negative 
+    if (fr.num < 0 && fr.denom < 0){
+      fs.num = (Math.abs(fr.num));
+      fs.denom = (Math.abs(fr.denom));
+    } else if (fr.num > 0 && fr.denom < 0 || (fr.num < 0 && fr.denom > 0)){
+      fs.num = (0 - Math.abs(fr.num));
+      fs.denom = (Math.abs(fr.denom));
+    } else if (fr.num == 0){
+      fs.num = 0;
+      fs.denom = (Math.abs(fr.denom));
+    }
+    return (fs);
+  }
+  
+  //method for printing a fraction by converting to string first
+  void fractionPrint(Fraction fr){
+    fr = fr.SetSign(fr);
+    System.out.println(toString(fr));
+  }
+  
+  
+  public static void main(String[] args) {
+    long num1,num2;
+    long denom1,denom2;
+    Scanner kbd;
+    char input;
+    Fraction f1,f2;
+    double d1;
+    num2 = 0;
+    denom2 = 0;
+    
+    kbd = new Scanner (System.in);
+    
+    System.out.println("First Fraction (Numerator then Denominator)");
+    num1 = kbd.nextLong();
+    denom1 = kbd.nextLong();
+    
+    //creates both fractions but the value for the second fraction is empty
+    //until user has inputted the values in the loop
+    f1 = new Fraction(num1, denom1);
+    f2 = new Fraction(num1, num2);
+    
+    do {
+      
+      System.out.println("Which operation would you like?:");
+      System.out.println("q to exit, +-*/, p to print, d to convert to double");
+      input = kbd.next().charAt(0);
+      
+      //decides which method to run via user inputted char
+      
+      switch ( input ) {
+        //returns the sum of two fractions
+        case '+':
+          System.out.println("Second Fraction");
+          
+          num2 = kbd.nextLong();
+          denom2 = kbd.nextLong();
+          f2 = new Fraction(num2,denom2);
+          
+          System.out.println("Add:");
+          
+          f1.fractionPrint(f1.sum(f1,f2));
+          
+          break;
+          //returns the difference of two fractions
+        case '-':   
+          System.out.println("Second Fraction");
+          
+          num2 = kbd.nextLong();
+          denom2 = kbd.nextLong();
+          f2 = new Fraction(num2,denom2);
+          
+          System.out.println("Minus:");
+          
+          f1.fractionPrint(f1.minus(f1,f2));
+          
+          break;
+          //returns the division of two fractions
+        case '/':
+          System.out.println("Second Fraction");
+          
+          num2 = kbd.nextLong();
+          denom2 = kbd.nextLong();
+          f2 = new Fraction(num2,denom2);
+          
+          System.out.println("Divide:");
+          
+          f1.fractionPrint(f1.divide(f1,f2));
+          
+          break;
+          //returns the product of two fractions
+        case '*':
+          System.out.println("Second Fraction");
+          
+          num2 = kbd.nextLong();
+          denom2 = kbd.nextLong();
+          f2 = new Fraction(num2,denom2);
+          
+          System.out.println("Multiply:");
+          
+          f1.fractionPrint(f1.product(f1,f2));    
+          
+          break;
+          //prints the users first fraction
+        case 'p':
+          System.out.println("Current Fraction:");
+          
+          f1.fractionPrint(f1);
+          
+          break;
+          //prints the users first fraction as a double
+        case 'd':
+          System.out.println("Current Fraction as a double:");
+          
+          d1 = f1.toDouble(f1);
+          
+          System.out.println(d1);
+          
+          break;          
+          //ends the program          
+        case 'q':
+          return;
+          //loops the switch
+        default:
+          break;
+      }
+      
+    }  while (input != 'q');
+  }
+}
