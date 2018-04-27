@@ -13,7 +13,7 @@ public class App {
 		
 		//fills the array
 		for(int i = 0; i < A.length; i++) {
-		A[i] = i;
+			A[i] = i;
 		}
 		
 		start = A.length - A.length;
