@@ -28,7 +28,7 @@ public class App {
 		//if we exceed the length of the array, return -1 (not found)
 		if (i > a.length) {
 			return -1;
-			//if we find the key, return the index position
+		//if we find the key, return the index position
 		} else if (a[i] == x){
 			return i;
 		}
