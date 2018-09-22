@@ -78,17 +78,7 @@ public class TicTacToe {
 				
 		}
 		
-		
-		if (whosMove == 0) {
-			
-			tCountX.setText(Integer.toString(xCounter));
-				
-		} else {
-			
-			tCount0.setText(Integer.toString(oCounter));
 
-		}
-		
 		resetMatrix();
 	}
 	
@@ -98,6 +88,7 @@ public class TicTacToe {
 				bu[i][j] = null;
 			}
 		}
+		//needs to be redone
 		b1.setBackground(Color.LIGHT_GRAY);
 		b1.setText(null);
 		b2.setBackground(Color.LIGHT_GRAY);
@@ -121,6 +112,8 @@ public class TicTacToe {
 	
 	private void aiMove() {
 		int r1, r2;
+		//rediculously poor AI that just autos the winning move if AI is presented with it
+		//otherwise moves randomly
 		int[] bestMoveToMake = bestMove(bu);
 		whosMove = 1;
 
@@ -211,11 +204,14 @@ public class TicTacToe {
 				}
 			}
 			
-
+			//checks if AI wins
 			choosePlayer();
 			if (WinningGame(bu)) {
-				
+				whosMove = 1;
 				xCounter++;
+				if (whosMove == 1)
+				tCountX.setText(Integer.toString(xCounter));
+				
 				GameScore();
 				JOptionPane.showMessageDialog(frame, "AI Wins", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
 				
@@ -223,7 +219,7 @@ public class TicTacToe {
 		}
 	}
 	
-	
+	//if board is full
 	private boolean checkFull() {
 		boolean full;
 		counter = 0;
@@ -245,6 +241,7 @@ public class TicTacToe {
 		return full;
 	}
 	
+	//decides whether 0 or X
 	private void choosePlayer() {
 		if (startGame.equalsIgnoreCase("X")) {
 			startGame = "0";
@@ -389,6 +386,9 @@ public class TicTacToe {
 					if(WinningGame(bu)) {
 
 						oCounter++;
+						
+						tCount0.setText(Integer.toString(oCounter));
+						
 						whosMove = 0;
 						GameScore();
 						JOptionPane.showMessageDialog(frame, "Player Wins", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
@@ -423,6 +423,9 @@ public class TicTacToe {
 					if(WinningGame(bu)) {
 
 						oCounter++;
+						
+						tCount0.setText(Integer.toString(oCounter));
+						
 						whosMove = 0;
 						GameScore();
 						JOptionPane.showMessageDialog(frame, "Player Wins", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
@@ -455,6 +458,9 @@ public class TicTacToe {
 					if(WinningGame(bu)) {
 
 						oCounter++;
+						
+						tCount0.setText(Integer.toString(oCounter));
+						
 						whosMove = 0;
 						GameScore();
 						JOptionPane.showMessageDialog(frame, "Player Wins", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
@@ -471,7 +477,7 @@ public class TicTacToe {
 		panel.add(panel_4);
 		panel_4.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblPlayerX = new JLabel("USER");
+		JLabel lblPlayerX = new JLabel("AI");
 		lblPlayerX.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlayerX.setFont(new Font("Bahnschrift", Font.BOLD, 23));
 		panel_4.add(lblPlayerX, BorderLayout.CENTER);
@@ -510,6 +516,9 @@ public class TicTacToe {
 					if(WinningGame(bu)) {
 
 						oCounter++;
+						
+						tCount0.setText(Integer.toString(oCounter));
+						
 						whosMove = 0;
 						GameScore();
 						JOptionPane.showMessageDialog(frame, "Player Wins", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
@@ -544,6 +553,9 @@ public class TicTacToe {
 					if(WinningGame(bu)) {
 
 						oCounter++;
+						
+						tCount0.setText(Integer.toString(oCounter));
+						
 						whosMove = 0;
 						GameScore();
 						JOptionPane.showMessageDialog(frame, "Player Wins", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
@@ -577,6 +589,9 @@ public class TicTacToe {
 					if(WinningGame(bu)) {
 
 						oCounter++;
+						
+						tCount0.setText(Integer.toString(oCounter));
+						
 						whosMove = 0;
 						GameScore();
 						JOptionPane.showMessageDialog(frame, "Player Wins", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
@@ -593,7 +608,7 @@ public class TicTacToe {
 		panel.add(panel_9);
 		panel_9.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblPlayerO = new JLabel("AI");
+		JLabel lblPlayerO = new JLabel("USER");
 		lblPlayerO.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlayerO.setFont(new Font("Bahnschrift", Font.BOLD, 23));
 		panel_9.add(lblPlayerO, BorderLayout.CENTER);
@@ -631,7 +646,10 @@ public class TicTacToe {
 					choosePlayer();
 					if(WinningGame(bu)) {
 
-						oCounter++;
+						oCounter++;						
+						
+						tCount0.setText(Integer.toString(oCounter));
+						
 						whosMove = 0;
 						GameScore();
 						JOptionPane.showMessageDialog(frame, "Player Wins", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
@@ -666,6 +684,9 @@ public class TicTacToe {
 					if(WinningGame(bu)) {
 
 						oCounter++;
+						
+						tCount0.setText(Integer.toString(oCounter));
+						
 						whosMove = 0;
 						GameScore();
 						JOptionPane.showMessageDialog(frame, "Player Wins", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
@@ -700,8 +721,12 @@ public class TicTacToe {
 					if(WinningGame(bu)) {
 
 						oCounter++;
+						
+						tCount0.setText(Integer.toString(oCounter));
+						
 						whosMove = 0;
 						GameScore();
+
 						JOptionPane.showMessageDialog(frame, "Player Wins", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
 					}
 					aiMove();
@@ -745,7 +770,7 @@ public class TicTacToe {
 		panel_15.add(exit, BorderLayout.CENTER);
 	}
 
-	
+	//poor mans AI
 	public int[] bestMove(String[][] someArr) {
 		int r1,r2;
 		r1 = 100;
@@ -793,6 +818,7 @@ public class TicTacToe {
 		
 	}
 	
+	//checks the available moves
 	public int[][] availableMoves(String[][] Arr) {
 		int availableMoves[][];
 		availableMoves = new int[Arr.length][Arr[0].length];
